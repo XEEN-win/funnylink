@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Error Message</title>
+<style>
+html,body{margin:0;width:100%;height:100%;background:#000;overflow:hidden}
+#screen{
+  position:fixed;inset:0;
+  width:100vw;height:100vh;height:100dvh;
+  overflow:hidden;
+  padding:8px;
+  box-sizing:border-box;
+  color:#ff0000;
+  font:700 13px/1.12 monospace;
+  white-space:pre-wrap;
+  word-break:break-all;
+}
+</style>
+</head>
+<body>
+<div id="screen"></div>
+<script>
+const screen=document.getElementById("screen");
+function add(){
+  screen.textContent += "ERROR MESSAGE  ";
+  if(screen.textContent.length>50000)
+    screen.textContent=screen.textContent.slice(-35000);
+}
+for(let i=0;i<500;i++) add();
+setInterval(add,18);
+function fs(){
+  if(document.documentElement.requestFullscreen)
+    document.documentElement.requestFullscreen().catch(()=>{});
+}
+document.addEventListener("click",fs,{once:true});
+document.addEventListener("touchstart",fs,{once:true});
+</script>
+</body>
+</html>
